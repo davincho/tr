@@ -1,7 +1,17 @@
+@import './variables';
+
+/** Scaffold **/
+aside {
+  color: red;
+}
+
+/***/
+
 body {
   background-color: #efefef;
   margin: 0;
   padding: 0;
+  font-family: $font;
 }
 
 .seo {
@@ -22,7 +32,7 @@ body {
   .img-container {
     position: relative;
 
-    & > img {
+    .img {
       width: 100%;
     }
   }
@@ -48,7 +58,7 @@ body {
     }
 
     .reviews {
-      font-family: Helvetica;
+      font-family: $font;
       font-size: 10px;
       color: #ffffff;
       line-height: 18px;
@@ -57,10 +67,11 @@ body {
 
   .content {
     padding: 10px 20px;
+    background-color: #fff;
   }
 
   .heading {
-    font-family: Helvetica-Bold;
+    font-family: $heading-font;
     font-size: 18px;
     color: #333333;
     letter-spacing: 0;
@@ -70,7 +81,7 @@ body {
   .teaser {
     display: block; /* Fallback for non-webkit */
     display: -webkit-box;
-    font-family: Helvetica-Oblique;
+    font-family: 'Helvetica-Oblique Helvetica';
     font-size: 12px;
     color: #333333;
     letter-spacing: 0;
@@ -89,22 +100,84 @@ body {
   }
 
   .facts {
-    tr {
-      td {
-        font-family: Helvetica;
-        font-size: 12px;
-        color: #333333;
-        letter-spacing: 0;
-        line-height: 20px;
+    dd {
+      font-size: 12px;
+      color: #333333;
+      letter-spacing: 0;
+      line-height: 20px;
+      display: inline-block;
+      margin: 0;
+    }
+    dt {
+      font-size: 10px;
+      color: #999999;
+      letter-spacing: 0;
+      line-height: 18px;
+      width: 50%;
+      display: inline-block;
+    }
+  }
+}
 
-        &:first-child {
-          font-family: Helvetica;
-          font-size: 10px;
-          color: #999999;
-          letter-spacing: 0;
-          line-height: 18px;
+.filter {
+  margin-top: 20px;
+  .title {
+    background-color: $primary;
+    color: #fff;
+    padding: 20px 20px;
+    margin-top: 20px;
+    font-weight: bold;
+  }
+
+  .filter-header {
+    font-family: $heading-font;
+    font-size: 14px;
+    color: #333333;
+    line-height: 20px;
+    font-weight: bold;
+  }
+
+  .content {
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #fff;
+  }
+  .filter-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+    li {
+      padding: 5px 0;
+      .hits {
+        color: #efefef;
+      }
+      &.active {
+        color: $primary;
+        font-weight: bold;
+
+        .hits {
+          color: inherit;
         }
       }
     }
   }
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.more {
+  background-color: $primary;
+  color: #fff;
+}
+
+.sorting {
+  padding: 20px;
+  text-align: center;
+  color: $primary;
 }

@@ -1,7 +1,14 @@
+/** Scaffold **/
+aside {
+  color: red;
+}
+
+/***/
 body {
   background-color: #efefef;
   margin: 0;
   padding: 0;
+  font-family: "Helvetica";
 }
 
 .seo {
@@ -24,7 +31,7 @@ body {
   position: relative;
 }
 
-.tour .img-container > img {
+.tour .img-container .img {
   width: 100%;
 }
 
@@ -46,7 +53,7 @@ body {
 }
 
 .tour .controls .reviews {
-  font-family: Helvetica;
+  font-family: "Helvetica";
   font-size: 10px;
   color: #ffffff;
   line-height: 18px;
@@ -54,10 +61,11 @@ body {
 
 .tour .content {
   padding: 10px 20px;
+  background-color: #fff;
 }
 
 .tour .heading {
-  font-family: Helvetica-Bold;
+  font-family: "Helvetica-Bold Helvetica";
   font-size: 18px;
   color: #333333;
   letter-spacing: 0;
@@ -68,7 +76,7 @@ body {
   display: block;
   /* Fallback for non-webkit */
   display: -webkit-box;
-  font-family: Helvetica-Oblique;
+  font-family: 'Helvetica-Oblique Helvetica';
   font-size: 12px;
   color: #333333;
   letter-spacing: 0;
@@ -86,18 +94,87 @@ body {
   content: '"';
 }
 
-.tour .facts tr td {
-  font-family: Helvetica;
+.tour .facts dd {
   font-size: 12px;
   color: #333333;
   letter-spacing: 0;
   line-height: 20px;
+  display: inline-block;
+  margin: 0;
 }
 
-.tour .facts tr td:first-child {
-  font-family: Helvetica;
+.tour .facts dt {
   font-size: 10px;
   color: #999999;
   letter-spacing: 0;
   line-height: 18px;
+  width: 50%;
+  display: inline-block;
+}
+
+.filter {
+  margin-top: 20px;
+}
+
+.filter .title {
+  background-color: #409cd1;
+  color: #fff;
+  padding: 20px 20px;
+  margin-top: 20px;
+  font-weight: bold;
+}
+
+.filter .filter-header {
+  font-family: "Helvetica-Bold Helvetica";
+  font-size: 14px;
+  color: #333333;
+  line-height: 20px;
+  font-weight: bold;
+}
+
+.filter .content {
+  padding: 15px;
+  margin-top: 10px;
+  background-color: #fff;
+}
+
+.filter .filter-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.filter .filter-list li {
+  padding: 5px 0;
+}
+
+.filter .filter-list li .hits {
+  color: #efefef;
+}
+
+.filter .filter-list li.active {
+  color: #409cd1;
+  font-weight: bold;
+}
+
+.filter .filter-list li.active .hits {
+  color: inherit;
+}
+
+.btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+}
+
+.more {
+  background-color: #409cd1;
+  color: #fff;
+}
+
+.sorting {
+  padding: 20px;
+  text-align: center;
+  color: #409cd1;
 }
