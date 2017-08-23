@@ -3,7 +3,8 @@ $(function() {
 
   var filters = {
     days: [3, 77],
-    sort: 'popularity'
+    sort: 'popularity',
+    month: 9 // October
   };
 
   noUiSlider.create(slider, {
@@ -20,6 +21,16 @@ $(function() {
     $($('.slider-days').children()[1]).html(`${parseInt(values[1])} days`);
 
     filters.days = values;
+
+    renderResults();
+  });
+
+  $('#month-filter li').on('click', function(event) {
+    event.preventDefault();
+    $(this).parent().children().removeClass('active');
+    $(this).addClass('active');
+
+    filters.month = parseInt($(this).data('value'));
 
     renderResults();
   });
@@ -48,16 +59,39 @@ $(function() {
       if (tour.length < days[0] || tour.length > days[1]) {
         return;
       }
-      console.log('tour', tour);
 
-      const fullStars = Math.floor(tour.rating);
-      const hasHalfStar = fullStars !== tour.rating;
+      var fullStars = Math.floor(tour.rating);
+      var hasHalfStar = fullStars !== tour.rating;
+
+      var availableDates = tour.dates.filter(function(date) {
+        return (
+          date.availability > 0 &&
+          moment(date.start).get('month') === filters.month
+        );
+      });
+
+      if (availableDates.length === 0) {
+        return;
+      }
+
+      var cheapestPrice = availableDates.reduce(function(acc, date) {
+        return !acc || acc > date.eur ? date.eur : acc;
+      }, null);
+
+      console.log('cheapestPrice', availableDates, cheapestPrice);
+
+      var $dates = availableDates.map(function(date) {
+        return `<dt>${moment(date.start).format(
+          'D MMM'
+        )}</dt><dd ${date.availability <= 10 ? 'class="oos"' : ''}>${date.availability} seats left</dd>`;
+      });
 
       var $tour = $(
         `
             <li class="tour pure-g">
                 <div class="pure-u-1 pure-u-md-1-3">
                     <div class="img-container">
+                        <img src="./assets/heart.svg" class="love" />
                         <a href="${tour.url}">
                             <img class="img" data-original="${tour.images[0]
                               .url}" />
@@ -76,27 +110,48 @@ $(function() {
                     </div>
                 </div>
                 <div class="pure-u-1 pure-u-md-2-3">
-                    <div class="content">
-                        <h2 class="heading">${tour.name} - ${tour.length} days</h2>
-                        <p class="teaser">${tour.description}</p>
-                            <dl class="facts">
-                                <dt>Days</dt>
-                                <dd>${tour.length} days</dd>
-                        
-                                <dt>Destinations</dt>
-                                <dd>${tour.cities.length} cities</dd>
-                            
-                                <dt>Starts / Ends</dt>
-                                <dd>
-                                    ${tour.cities[0].name} /
-                                    ${tour.cities[tour.cities.length - 1].name}
-                                </dd>
-                            
-                                <dt>Operator</dt>
-                                <dd>${tour.operator_name}</dd>
-                            </dl>
-                        <a href="${tour.url}" class="btn more">View more</a>
+                  <div class="content">
+                    <div class="pure-g">
+                      <div class="pure-u-1 pure-u-md-3-5">
+                        <div class="content-inner md-border-r sm-border-b">
+                          <h2 class="heading">${tour.name} - ${tour.length} days</h2>
+                          <p class="teaser">${tour.description}</p>
+                          <dl class="facts">
+                            <dt>Days</dt>
+                            <dd>${tour.length} days</dd>
+
+                            <dt>Destinations</dt>
+                            <dd>${tour.cities.length} cities</dd>
+
+                            <dt>Starts / Ends</dt>
+                            <dd>
+                            ${tour.cities[0].name} /
+                            ${tour.cities[tour.cities.length - 1].name}
+                            </dd>
+
+                            <dt>Operator</dt>
+                            <dd>${tour.operator_name}</dd>
+                          </dl>
+                        </div>
+                      </div>
+                      <div class="pure-u-1 pure-u-md-2-5">
+                        <div class="content-inner">
+                          <div class="price-container">
+                            Total price
+                            <div class="price">
+                            €${cheapestPrice}
+                            </div>
+                          </div>
+                          <div class="divider" />
+                          <dl class="dates">
+                            ${$dates.join('')}
+                          </dl>
+                          <div class="divider" />
+                          <a href="${tour.url}" class="btn more">View more</a>
+                        </div>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </li>
         `

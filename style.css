@@ -1,6 +1,12 @@
 /** Scaffold **/
-aside {
-  color: red;
+.container {
+  max-width: 1120px;
+}
+
+@media screen and (min-width: 48em) {
+  .container {
+    padding: 30px 10px;
+  }
 }
 
 /***/
@@ -11,6 +17,12 @@ body {
   font-family: "Helvetica";
 }
 
+@media screen and (min-width: 48em) {
+  body {
+    padding-top: 30px;
+  }
+}
+
 .seo {
   display: none;
 }
@@ -18,6 +30,21 @@ body {
 .tours {
   margin: 0;
   padding: 0;
+}
+
+@media screen and (min-width: 48em) {
+  .tours {
+    margin-left: 20px;
+  }
+}
+
+.divider {
+  border-top: 1px solid #efefef;
+  margin: 15px 0;
+}
+
+.divider.full {
+  margin: 15px -20px;
 }
 
 .tour {
@@ -31,8 +58,26 @@ body {
   position: relative;
 }
 
+.tour .img-container .love {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+}
+
 .tour .img-container .img {
   width: 100%;
+}
+
+@media screen and (min-width: 48em) {
+  .tour {
+    padding-bottom: 20px;
+  }
+  .tour .img-container {
+    height: 100%;
+  }
+  .tour .img-container .img {
+    height: 100%;
+  }
 }
 
 .tour .controls {
@@ -48,6 +93,12 @@ body {
   padding: 0 10px;
 }
 
+@media screen and (min-width: 48em) {
+  .tour .controls {
+    bottom: 0;
+  }
+}
+
 .tour .controls .stars img {
   height: 16px;
 }
@@ -60,8 +111,11 @@ body {
 }
 
 .tour .content {
-  padding: 10px 20px;
   background-color: #fff;
+}
+
+.tour .content-inner {
+  padding: 10px 20px;
 }
 
 .tour .heading {
@@ -112,15 +166,50 @@ body {
   display: inline-block;
 }
 
-.filter {
-  margin-top: 20px;
+.tour .price-container {
+  font-weight: bold;
+  text-align: right;
+}
+
+.tour .price-container .price {
+  font-family: Helvetica;
+  font-size: 18px;
+  color: #333333;
+  line-height: 23px;
+  margin-top: 5px;
+  font-weight: normal;
+}
+
+.tour .dates {
+  font-size: 12px;
+  color: #333333;
+  line-height: 20px;
+}
+
+.tour .dates dd,
+.tour .dates dt {
+  display: inline-block;
+  margin: 0;
+}
+
+.tour .dates dt {
+  width: 50%;
+}
+
+.tour .dates dd.oos {
+  color: red;
+}
+
+@media screen and (max-width: 48em) {
+  .filter {
+    margin-top: 20px;
+  }
 }
 
 .filter .title {
   background-color: #409cd1;
   color: #fff;
   padding: 20px 20px;
-  margin-top: 20px;
   font-weight: bold;
 }
 
@@ -152,13 +241,18 @@ body {
   color: #efefef;
 }
 
-.filter .filter-list li.active {
+.filter .filter-list li.active .hits {
+  color: inherit;
+}
+
+.filter .filter-list li.active a {
   color: #409cd1;
   font-weight: bold;
 }
 
-.filter .filter-list li.active .hits {
-  color: inherit;
+.filter .filter-list li a {
+  text-decoration: none;
+  color: #000;
 }
 
 .btn {
@@ -177,4 +271,24 @@ body {
   padding: 20px;
   text-align: center;
   color: #409cd1;
+}
+
+@media screen and (min-width: 48em) {
+  .sorting {
+    text-align: right;
+    margin-top: -60px;
+    padding-right: 0;
+  }
+}
+
+@media screen and (min-width: 48em) {
+  .md-border-r {
+    border-right: 1px solid #efefef;
+  }
+}
+
+@media screen and (max-width: 48em) {
+  .sm-border-b {
+    border-bottom: 1px solid #efefef;
+  }
 }
