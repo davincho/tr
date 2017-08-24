@@ -74,9 +74,13 @@ $(function() {
         return;
       }
 
-      var cheapestPrice = availableDates.reduce(function(acc, date) {
-        return !acc || acc > date.eur ? date.eur : acc;
-      }, null);
+      var cheapestPrice = _.reduce(
+        availableDates,
+        function(acc, date) {
+          return !acc || acc > date.eur ? date.eur : acc;
+        },
+        null
+      );
 
       var $dates = availableDates.map(function(date) {
         return (
@@ -106,7 +110,10 @@ $(function() {
         .replace(/%%TOUR_IMAGE%%/g, tour.images[0].url)
         .replace(
           /%%TOUR_STARS%%/,
-          '<img src="./assets/star-full.svg" alt="star" />'.repeat(fullStars) +
+          _.repeat(
+            '<img src="./assets/star-full.svg" alt="star" />',
+            fullStars
+          ) +
             (hasHalfStar
               ? '<img src="./assets/star-half.png" alt="star" />'
               : '')
