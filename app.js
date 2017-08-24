@@ -103,7 +103,10 @@ $(function() {
         .replace(/%TOUR_CITY_END%/g, tour.cities[tour.cities.length - 1].name)
         .replace(/%TOUR_URL%/g, tour.url)
         .replace(/%TOUR_CHEAPEST_PRICE%/g, cheapestPrice)
-        .replace(/%TOUR_DESCRIPTION%/g, tour.description)
+        .replace(
+          /%TOUR_DESCRIPTION%/g,
+          _.truncate(tour.description, { length: 80, omission: '...' })
+        )
         .replace(/%TOUR_OPERATOR%/g, tour.operator_name)
         .replace(/%TOUR_DATES%/g, $dates.join(''))
         .replace(/%TOUR_LENGTH%/g, tour.length)
