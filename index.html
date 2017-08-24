@@ -56,10 +56,75 @@
             </ul>
         </div>
     </div>
+
+    <script id="no-result-template" type="text/x-handlebars-template">
+        <li class="no-result">
+            No tours were found.
+        </li>
+    </script>
+    <script id="tour-template" type="text/x-handlebars-template">
+        <li class="tour pure-g">
+            <div class="pure-u-1 pure-u-md-1-3">
+                <div class="img-container">
+                    <img src="./assets/heart.svg" class="love" />
+                    <a href="%%TOUR_URL%%">
+                        <img class="img" data-original="%%TOUR_IMAGE%%" />
+                    </a>
+                    <div class="controls">
+                        <div class="stars">
+                            %%TOUR_STARS%%
+                        </div>
+                        <div class="reviews">%%TOUR_REVIEWS%% Reviews</div>
+                    </div>
+                </div>
+            </div>
+            <div class="pure-u-1 pure-u-md-2-3">
+                <div class="content">
+                    <div class="pure-g">
+                        <div class="pure-u-1 pure-u-md-3-5">
+                            <div class="content-inner md-border-r sm-border-b">
+                                <h2 class="heading">%%TOUR_NAME%% - %%TOUR_LENGTH%% days</h2>
+                                <p class="teaser">%%TOUR_DESCRIPTION%%</p>
+                                <dl class="facts">
+                                    <dt>Days</dt>
+                                    <dd>%%TOUR_LENGTH%% days</dd>
+
+                                    <dt>Destinations</dt>
+                                    <dd>%%TOUR_CITIES%% cities</dd>
+
+                                    <dt>Starts / Ends</dt>
+                                    <dd>
+                                        %%TOUR_CITY_START%% / %%TOUR_CITY_END%%
+                                    </dd>
+
+                                    <dt>Operator</dt>
+                                    <dd>%%TOUR_OPERATOR%%</dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="pure-u-1 pure-u-md-2-5">
+                            <div class="content-inner">
+                                <div class="price-container">
+                                    Total price
+                                    <div class="price">
+                                        € %%TOUR_CHEAPEST_PRICE%%
+                                    </div>
+                                </div>
+                                <div class="divider" />
+                                <dl class="dates">
+                                    %%TOUR_DATES%%
+                                </dl>
+                                <div class="divider" />
+                                <a href="%%TOUR_URL%%" class="btn more">View more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </script>
     <script src="./tours.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-        crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU="
         crossorigin="anonymous"></script>
     <script src="https://unpkg.com/moment@2.18.1/min/moment.min.js"></script>
     <script src="https://unpkg.com/jquery-lazyload@1.9.7"></script>

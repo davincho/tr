@@ -78,84 +78,33 @@ $(function() {
         return !acc || acc > date.eur ? date.eur : acc;
       }, null);
 
-      console.log('cheapestPrice', availableDates, cheapestPrice);
-
       var $dates = availableDates.map(function(date) {
         return `<dt>${moment(date.start).format(
           'D MMM'
         )}</dt><dd ${date.availability <= 10 ? 'class="oos"' : ''}>${date.availability} seats left</dd>`;
       });
 
-      var $tour = $(
-        `
-            <li class="tour pure-g">
-                <div class="pure-u-1 pure-u-md-1-3">
-                    <div class="img-container">
-                        <img src="./assets/heart.svg" class="love" />
-                        <a href="${tour.url}">
-                            <img class="img" data-original="${tour.images[0]
-                              .url}" />
-                        </a>
-                        <div class="controls">
-                            <div class="stars">
-                                ${'<img src="./assets/star-full.svg" alt="star" />'.repeat(
-                                  fullStars
-                                )}
-                                ${hasHalfStar
-                                  ? '<img src="./assets/star-half.png" alt="star" />'
-                                  : ''}
-                            </div>
-                            <div class="reviews">${tour.reviews} Reviews</div>
-                        </div> 
-                    </div>
-                </div>
-                <div class="pure-u-1 pure-u-md-2-3">
-                  <div class="content">
-                    <div class="pure-g">
-                      <div class="pure-u-1 pure-u-md-3-5">
-                        <div class="content-inner md-border-r sm-border-b">
-                          <h2 class="heading">${tour.name} - ${tour.length} days</h2>
-                          <p class="teaser">${tour.description}</p>
-                          <dl class="facts">
-                            <dt>Days</dt>
-                            <dd>${tour.length} days</dd>
-
-                            <dt>Destinations</dt>
-                            <dd>${tour.cities.length} cities</dd>
-
-                            <dt>Starts / Ends</dt>
-                            <dd>
-                            ${tour.cities[0].name} /
-                            ${tour.cities[tour.cities.length - 1].name}
-                            </dd>
-
-                            <dt>Operator</dt>
-                            <dd>${tour.operator_name}</dd>
-                          </dl>
-                        </div>
-                      </div>
-                      <div class="pure-u-1 pure-u-md-2-5">
-                        <div class="content-inner">
-                          <div class="price-container">
-                            Total price
-                            <div class="price">
-                            €${cheapestPrice}
-                            </div>
-                          </div>
-                          <div class="divider" />
-                          <dl class="dates">
-                            ${$dates.join('')}
-                          </dl>
-                          <div class="divider" />
-                          <a href="${tour.url}" class="btn more">View more</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </li>
-        `
-      );
+      var $tour = $('#tour-template')
+        .html()
+        .replace(/%%TOUR_NAME%%/g, tour.name)
+        .replace(/%%TOUR_CITIES%%/g, tour.cities.length)
+        .replace(/%%TOUR_REVIEWS%%/g, tour.reviews)
+        .replace(/%%TOUR_CITY_START%%/g, tour.cities[0].name)
+        .replace(/%%TOUR_CITY_END%%/g, tour.cities[tour.cities.length - 1].name)
+        .replace(/%%TOUR_URL%%/g, tour.url)
+        .replace(/%%TOUR_CHEAPEST_PRICE%%/g, cheapestPrice)
+        .replace(/%%TOUR_DESCRIPTION%%/g, tour.description)
+        .replace(/%%TOUR_OPERATOR%%/g, tour.operator_name)
+        .replace(/%%TOUR_DATES%%/g, $dates.join(''))
+        .replace(/%%TOUR_LENGTH%%/g, tour.length)
+        .replace(/%%TOUR_IMAGE%%/g, tour.images[0].url)
+        .replace(
+          /%%TOUR_STARS%%/,
+          '<img src="./assets/star-full.svg" alt="star" />'.repeat(fullStars) +
+            (hasHalfStar
+              ? '<img src="./assets/star-half.png" alt="star" />'
+              : '')
+        );
 
       $tourContainer.append($tour);
     });
@@ -163,6 +112,10 @@ $(function() {
     $('img').lazyload({
       effect: 'fadeIn'
     });
+
+    if ($tourContainer.children().length === 0) {
+      $tourContainer.append($('#no-result-template').html());
+    }
   }
 
   renderResults();
