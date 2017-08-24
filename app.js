@@ -96,20 +96,20 @@ $(function() {
 
       var $tour = $('#tour-template')
         .html()
-        .replace(/%%TOUR_NAME%%/g, tour.name)
-        .replace(/%%TOUR_CITIES%%/g, tour.cities.length)
-        .replace(/%%TOUR_REVIEWS%%/g, tour.reviews)
-        .replace(/%%TOUR_CITY_START%%/g, tour.cities[0].name)
-        .replace(/%%TOUR_CITY_END%%/g, tour.cities[tour.cities.length - 1].name)
-        .replace(/%%TOUR_URL%%/g, tour.url)
-        .replace(/%%TOUR_CHEAPEST_PRICE%%/g, cheapestPrice)
-        .replace(/%%TOUR_DESCRIPTION%%/g, tour.description)
-        .replace(/%%TOUR_OPERATOR%%/g, tour.operator_name)
-        .replace(/%%TOUR_DATES%%/g, $dates.join(''))
-        .replace(/%%TOUR_LENGTH%%/g, tour.length)
-        .replace(/%%TOUR_IMAGE%%/g, tour.images[0].url)
+        .replace(/%TOUR_NAME%/g, tour.name)
+        .replace(/%TOUR_CITIES%/g, tour.cities.length)
+        .replace(/%TOUR_REVIEWS%/g, tour.reviews)
+        .replace(/%TOUR_CITY_START%/g, tour.cities[0].name)
+        .replace(/%TOUR_CITY_END%/g, tour.cities[tour.cities.length - 1].name)
+        .replace(/%TOUR_URL%/g, tour.url)
+        .replace(/%TOUR_CHEAPEST_PRICE%/g, cheapestPrice)
+        .replace(/%TOUR_DESCRIPTION%/g, tour.description)
+        .replace(/%TOUR_OPERATOR%/g, tour.operator_name)
+        .replace(/%TOUR_DATES%/g, $dates.join(''))
+        .replace(/%TOUR_LENGTH%/g, tour.length)
+        .replace(/%TOUR_IMAGE%/g, tour.images[0].url)
         .replace(
-          /%%TOUR_STARS%%/,
+          /%TOUR_STARS%/,
           _.repeat(
             '<img src="./assets/star-full.svg" alt="star" />',
             fullStars
