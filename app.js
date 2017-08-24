@@ -17,8 +17,8 @@ $(function() {
   });
 
   slider.noUiSlider.on('update', function(values, handle) {
-    $($('.slider-days').children()[0]).html(`${parseInt(values[0])} days`);
-    $($('.slider-days').children()[1]).html(`${parseInt(values[1])} days`);
+    $($('.slider-days').children()[0]).html(parseInt(values[0]) + ' days');
+    $($('.slider-days').children()[1]).html(parseInt(values[1]) + ' days');
 
     filters.days = values;
 
@@ -79,9 +79,15 @@ $(function() {
       }, null);
 
       var $dates = availableDates.map(function(date) {
-        return `<dt>${moment(date.start).format(
-          'D MMM'
-        )}</dt><dd ${date.availability <= 10 ? 'class="oos"' : ''}>${date.availability} seats left</dd>`;
+        return (
+          '<dt>' +
+          moment(date.start).format('D MMM') +
+          '</dt><dd' +
+          (date.availability <= 10 ? 'class="oos"' : '') +
+          '>' +
+          date.availability +
+          ' seats left</dd>'
+        );
       });
 
       var $tour = $('#tour-template')
